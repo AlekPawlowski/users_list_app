@@ -1,27 +1,33 @@
-import { store } from '@/redux'
+import { wrapper } from '@/redux'
 import type { Metadata } from 'next'
+import { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
-import { Provider } from 'react-redux'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'User list application',
-  description: 'For Proxe',
+    title: 'User list application',
+    description: 'For Proxe',
 }
 
-export default function RootLayout({
-  children,
+function RootLayout({
+    children,
 }: {
-  children: React.ReactNode
+    children: React.ReactNode
 }) {
-  return (
-    <html lang="en">
-        <body className={inter.className}>
-            <Provider store={store}>
+    return (
+        <html lang="en">
+            <body className={inter.className}>
                 {children}
-            </Provider>
-        </body>
-    </html>
-  )
+            </body>
+        </html>
+    )
 }
+
+export default RootLayout;
+
+
+// function MyApp({ Component, pageProps }: AppProps) {
+//     return <Component {...pageProps} />;
+//   }
+// export default wrapper.withRedux(MyApp);
