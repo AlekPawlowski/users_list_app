@@ -9,5 +9,7 @@ export const List = () => {
             .select('*')
     }
     getUserData();
-    return <Fragment>laksjdf;lkasj</Fragment>
+    return <Fragment>
+        
+    </Fragment>
 }
