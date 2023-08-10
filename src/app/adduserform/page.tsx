@@ -3,7 +3,7 @@ import { Fragment } from "react"
 
 const AddUserForm = () => {
     return <Fragment>
-        <h1>Add User form</h1>
+        <h1>Add form</h1>
         <UserForm />
     </Fragment>
 }

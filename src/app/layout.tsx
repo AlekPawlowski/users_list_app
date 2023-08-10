@@ -1,7 +1,9 @@
 import { wrapper } from '@/redux'
+import StyledComponentsRegistry from '@/styles/registry'
 import type { Metadata } from 'next'
 import { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,7 +20,10 @@ function RootLayout({
     return (
         <html lang="en">
             <body className={inter.className}>
-                {children}
+                <Link href="/">Home</Link>
+                <StyledComponentsRegistry>
+                    {children}
+                </StyledComponentsRegistry>
             </body>
         </html>
     )
