@@ -1,14 +1,15 @@
+"use client"
+
 import { IUsers } from "@/interface/IUsers";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { RootState, RootStore } from ".";
-import { HYDRATE } from "next-redux-wrapper";
+import { RootState } from ".";
 
 type TUserState = {
-    users: IUsers[]
+    users: IUsers[] | null
 }
 
 const initalUserState: TUserState = {
-    users: []
+    users: null
 }
 
 export const userSlice = createSlice({
@@ -19,11 +20,6 @@ export const userSlice = createSlice({
             state.users = action.payload
         }
     },
-    extraReducers: {
-        [HYDRATE]: (state, action) => {
-            return {...state, ...action.payload}
-        }
-    }
 })
 
 export const { updateUsers } = userSlice.actions;

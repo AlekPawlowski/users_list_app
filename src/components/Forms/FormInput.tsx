@@ -14,7 +14,7 @@ interface InputProps {
 export const FormInput = ({label, inputName, register, errors, value}: InputProps) => {
     return <Fragment>
         <fieldset>
-            <label htmlFor={inputName}>{label}</label>
+            <label htmlFor={inputName}>{label}:</label>
             <input type="text" 
                 id={inputName} 
                 defaultValue={value}

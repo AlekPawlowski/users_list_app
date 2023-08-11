@@ -6,6 +6,8 @@ import { Path, SubmitHandler, useForm } from "react-hook-form"
 import { FormInput } from "./FormInput"
 import { supabase } from "@/supabase/config"
 import Link from "next/link"
+import { FormActionButtons, FormStyle, FormSubmitButton } from "@/styles/SMain"
+import { useRouter } from "next/router"
 
 type IUserForm = {
     userData?: IUsers
@@ -49,6 +51,8 @@ export const UserForm = ({ userData }: IUserForm) => {
     } = useForm<IUserFormSchema>({
         resolver: zodResolver(userFormSchema)
     })
+    const goToMainSite= () => {
+    }
     const onSubmit: SubmitHandler<IUserFormSchema> = async (formValues) => {
         // if userData exist then update element in database, else send new one
         // sideEffect, update redux with income new object from database
@@ -65,16 +69,19 @@ export const UserForm = ({ userData }: IUserForm) => {
                 .insert([formValues])
                 .select()
         }
+        goToMainSite()
     }
 
-    return <form onSubmit={handleSubmit(onSubmit)}>
+    return <FormStyle onSubmit={handleSubmit(onSubmit)}>
         {
             userFormFields.map(field => {
                 const { label, inputName, value } = field;
                 return <FormInput key={label} {...field} register={register} errors={errors} />
             })
         }
-        <Link href="/">Cancel</Link>
-        <button type="submit">Submit</button>
-    </form>
+        <FormActionButtons>
+            <Link href="/">Cancel</Link>
+            <FormSubmitButton type="submit">Submit</FormSubmitButton>
+        </FormActionButtons>
+    </FormStyle>
 }

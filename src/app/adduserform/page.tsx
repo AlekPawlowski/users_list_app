@@ -1,11 +1,14 @@
 import { UserForm } from "@/components/Forms/UserForm";
+import { SectionHead, MainHeader, SmallMain } from "@/styles/SMain";
 import { Fragment } from "react"
 
 const AddUserForm = () => {
-    return <Fragment>
-        <h1>Add form</h1>
+    return <SmallMain>
+        <SectionHead>
+            <MainHeader>Add Form</MainHeader>
+        </SectionHead>
         <UserForm />
-    </Fragment>
+    </SmallMain>
 }
 
 
