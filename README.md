@@ -2,7 +2,7 @@
 The User List App is a web-based application designed to simplify the process of managing a list of users. The app provides a user-friendly interface that allows administrators to add new users, edit existing user information, and remove users from the list. This project aims to enhance user management efficiency, streamline data entry, and improve the overall user experience.
 
 
-# requirements
+# Requirements
 NPM -> pakage menager
 .env file -> file to store the connection key for supabase (SUPABASE_KEY=key, for key you must write to repo author) 
 
