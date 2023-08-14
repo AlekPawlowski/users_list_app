@@ -1,34 +1,34 @@
 "use client"
-import { IUsers } from "@/interface/IUsers";
 import { updateUsers } from "@/redux/userSlice";
 import { supabase } from "@/supabase/config";
 import { useDispatch, useSelector } from "react-redux";
 import { ListElement } from "./ListElement";
-import { Tabel } from "@/styles/SMain";
-import { Fragment, useEffect } from "react";
+import { Tabel, TabelContainer } from "@/styles/SMain";
+import { useEffect } from "react";
 import { RootState } from "@/redux";
 import { DeleteModal } from "../DeleteUser/DeleteModal";
+import { SortList } from "./SortList";
+import { getUserData } from "@/supabase/getUsers";
 
 export const List = () => {
     const dispatch = useDispatch();
     const store = useSelector((state: RootState) => state.users.users);
     console.log(store)
-    const getUserData = async () => {
-        let { data: users, error } = await supabase
-            .from('users')
-            .select('*')
-        if (users) {
-            const usersSortedList = users.sort((user, nextUser) => user.id - nextUser.id)
-            dispatch(updateUsers(usersSortedList));
-        }
-    }
+    
     useEffect(() => {
-        getUserData();
+        // update only if dosent exist, it will update by any action later
+        if (!store) {
+            (async function(){
+                const data = await getUserData();
+                dispatch(updateUsers(data));
+            })()
+        }
     }, [])
     if (!store) return <p>Loading...</p>
     if (store.length === 0) return <p>there is no users</p>
-    return <Fragment>
+    return <TabelContainer>
         <DeleteModal />
+        <SortList />
         <Tabel>
             <thead>
                 <tr>
@@ -46,10 +46,10 @@ export const List = () => {
                     store
                         .map((user, index) => {
                             const { id } = user
-                            return <ListElement index={index+1} key={id} element={user} />
+                            return <ListElement index={index + 1} key={id} element={user} />
                         })
                 }
             </tbody>
         </Tabel>
-    </Fragment>
+    </TabelContainer>
 }

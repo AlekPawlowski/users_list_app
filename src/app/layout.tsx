@@ -1,11 +1,9 @@
 "use client"
 
 import StyledComponentsRegistry from '@/styles/registry'
-import type { Metadata } from 'next'
-import { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
-import { store, wrapper } from '@/redux';
+import { store } from '@/redux';
 import { Provider } from 'react-redux'
 import { HomePageLink } from '@/styles/SMain'
 

@@ -1,4 +1,3 @@
-import { DeleteModal } from '@/components/DeleteUser/DeleteModal'
 import { List } from '@/components/List/List'
 import { AddUserBtn, Main, MainHeader, SectionHead } from '@/styles/SMain'
 import Link from 'next/link'

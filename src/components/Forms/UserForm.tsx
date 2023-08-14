@@ -7,7 +7,10 @@ import { FormInput } from "./FormInput"
 import { supabase } from "@/supabase/config"
 import Link from "next/link"
 import { FormActionButtons, FormStyle, FormSubmitButton } from "@/styles/SMain"
-import { useRouter } from "next/router"
+import { useRouter } from "next/navigation"
+import { getUserData } from "@/supabase/getUsers"
+import { useDispatch } from "react-redux"
+import { updateUsers } from "@/redux/userSlice"
 
 type IUserForm = {
     userData?: IUsers
@@ -20,6 +23,7 @@ type UsersFormField = {
 }
 
 export const UserForm = ({ userData }: IUserForm) => {
+    const dispatch = useDispatch();
     const userFormFields: UsersFormField[] = [
         {
             label: "Name",
@@ -51,7 +55,9 @@ export const UserForm = ({ userData }: IUserForm) => {
     } = useForm<IUserFormSchema>({
         resolver: zodResolver(userFormSchema)
     })
+    const router = useRouter();
     const goToMainSite= () => {
+        router.push("/")
     }
     const onSubmit: SubmitHandler<IUserFormSchema> = async (formValues) => {
         // if userData exist then update element in database, else send new one
@@ -62,13 +68,26 @@ export const UserForm = ({ userData }: IUserForm) => {
                 .update({ ...formValues })
                 .eq('id', userData.id)
                 .select()
-            
+            if(!error){
+                alert("User data edit successfully");
+            }else{
+                alert(`Add was break beacuse of ${error}`)
+            }
         } else {
             const { data, error } = await supabase
                 .from('users')
                 .insert([formValues])
                 .select()
+            if(!error){
+                alert("User was added successfully");
+            }else{
+                alert(`Add was break beacuse of ${error}`)
+            }
         }
+        (async function(){
+            const data = await getUserData();
+            dispatch(updateUsers(data));
+        })()
         goToMainSite()
     }
 

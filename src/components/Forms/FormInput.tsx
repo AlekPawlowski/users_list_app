@@ -1,5 +1,6 @@
 "use client"
 import { IUserFormSchema } from "@/schema/formSchema";
+import { ErrorMessage } from "@/styles/SMain";
 import { Fragment } from "react";
 import { FieldErrors, Path, UseFormRegister } from "react-hook-form";
 
@@ -20,7 +21,9 @@ export const FormInput = ({label, inputName, register, errors, value}: InputProp
                 defaultValue={value}
                 {...register(`${inputName}`)}
             />
-            {errors[inputName] && errors[inputName]?.message}
         </fieldset>
+        <ErrorMessage>
+            {errors[inputName] && errors[inputName]?.message}
+        </ErrorMessage>
     </Fragment>
 }

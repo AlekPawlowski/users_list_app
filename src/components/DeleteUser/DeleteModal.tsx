@@ -1,7 +1,7 @@
 import { RootState } from "@/redux"
 import { IModalState, modalShownStatusChange } from "@/redux/modalSlice";
 import { updateUsers } from "@/redux/userSlice";
-import { FormActionButtons, MainHeader, Modal, ModalActionButtons, ModalCancelButton, ModalDeleteButton, ModalTxt, ModalWindow, SectionHead, SmallMain } from "@/styles/SMain"
+import { MainHeader, Modal, ModalActionButtons, ModalCancelButton, ModalDeleteButton, ModalTxt, ModalWindow, SectionHead, SmallMain } from "@/styles/SMain"
 import { supabase } from "@/supabase/config";
 import { useDispatch, useSelector } from "react-redux"
 

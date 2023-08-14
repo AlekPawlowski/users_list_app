@@ -1,7 +1,5 @@
 "use client"
-import { DeleteModal } from "@/components/DeleteUser/DeleteModal";
 import { UserForm } from "@/components/Forms/UserForm";
-import { IUsers } from "@/interface/IUsers";
 import { RootState } from "@/redux";
 import { MainHeader, SectionHead, SmallMain } from "@/styles/SMain";
 import { useSelector } from "react-redux";

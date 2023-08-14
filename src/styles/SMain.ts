@@ -127,6 +127,8 @@ export const FormStyle = styled.form`
         display: flex;
         gap: 20px;
         align-items: center;
+        margin-bottom: 0px;
+        padding: 10px;
     }
     input{
         border-radius: ${borderRadius};
@@ -136,6 +138,12 @@ export const FormStyle = styled.form`
     }
 `;
 
+export const ErrorMessage = styled.p`
+    display: block;
+    color: ${colors.red};
+    margin-top: 0;
+    padding: 0 10px;
+`
 
 export const FormActionButtons = styled.section`
     display: flex;
@@ -170,4 +178,14 @@ export const ModalDeleteButton = styled.button`
 `
 export const ModalCancelButton = styled.button`
     background-color: ${colors.grey};
+`
+
+export const TabelContainer = styled.section`
+    overflow-x: auto;
+`
+
+export const SortSelect = styled.select`
+    margin-top: 10px;
+    padding: 3px 8px;
+    border-radius: ${borderRadius}
 `
