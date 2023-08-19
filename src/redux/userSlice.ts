@@ -24,7 +24,7 @@ export const userSlice = createSlice({
                 state.users = state.users?.slice().sort((a, b) => {
                     if (action.payload === "username") {
                         if (a.username && b.username) {
-                            return a.username < b.username ? -1 : 0
+                            return a.username < b.username ? -1 : 0 // toLocaleCompare
                         } else {
                             return 0
                         }

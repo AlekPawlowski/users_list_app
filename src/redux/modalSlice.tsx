@@ -4,9 +4,16 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from ".";
 import { IUsers } from "@/interface/IUsers";
 
+type Data = {
+    name: string;
+}
+
 export type IModalState = {
-    isModalActive: boolean;
-    user: IUsers | null;
+    isModalActive: true;
+    user: IUsers;
+} | {
+    isModalActive: false;
+    user: null
 }
 
 const initalModalState: IModalState = {

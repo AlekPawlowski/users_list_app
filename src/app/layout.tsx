@@ -9,11 +9,6 @@ import { HomePageLink } from '@/styles/SMain'
 
 const inter = Inter({ subsets: ['latin'] })
 
-// export const metadata: Metadata = {
-//     title: 'User list application',
-//     description: 'For Proxe',
-// }
-
 function RootLayout({
     children,
 }: {
@@ -23,7 +18,7 @@ function RootLayout({
         <html lang="en">
             <title>User list application</title>
             <meta name="title" content='User list application' />
-            <meta name="description" content='For Proxe' />
+            <meta name="description" content='For learn Next' />
             <body className={inter.className}>
                 <StyledComponentsRegistry>
                     <HomePageLink>

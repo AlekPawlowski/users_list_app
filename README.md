@@ -18,7 +18,7 @@ Tech  | Description
 [Zod](https://zod.dev/) | Schema declaration and validation libarary
 [Redux](https://redux.js.org/) | State menager for React
 [Supabase](https://supabase.com/) | Real-time database with authentication
-
+[Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) | convention for commits
 # Installation
 ```bash
 git clone https://github.com/AlekPawlowski/users_list_app.git

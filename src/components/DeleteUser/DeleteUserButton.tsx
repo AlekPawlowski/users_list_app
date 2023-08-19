@@ -1,6 +1,6 @@
 import { IUsers } from "@/interface/IUsers";
 import { IModalState, modalShownStatusChange } from "@/redux/modalSlice";
-import { DeleteUserButtonStyle } from "@/styles/SMain";
+import * as Styled from "@/styles/SMain";
 import { useDispatch } from "react-redux";
 
 export const DeleteUserButton = ({user}: {user: IUsers} ) => {
@@ -14,10 +14,10 @@ export const DeleteUserButton = ({user}: {user: IUsers} ) => {
         }
         dispatch(modalShownStatusChange(modalInformation));
     }
-    return <DeleteUserButtonStyle 
+    return <Styled.DeleteUserButtonStyle 
         type="button" 
         onClick={passUserProps}
         >
             delete
-        </DeleteUserButtonStyle>
+        </Styled.DeleteUserButtonStyle>
 }

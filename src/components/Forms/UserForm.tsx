@@ -19,33 +19,31 @@ type IUserForm = {
 type UsersFormField = {
     label: string;
     inputName: Path<IUserFormSchema>;
-    value: string;
 }
+
+const userFormFields: UsersFormField[] = [
+    {
+        label: "Name",
+        inputName: "name",
+    },
+    {
+        label: "Username",
+        inputName: "username",
+    },
+    {
+        label: "Email",
+        inputName: "email",
+    },
+    {
+        label: "City",
+        inputName: "city",
+    }
+]
 
 export const UserForm = ({ userData }: IUserForm) => {
     const dispatch = useDispatch();
-    const userFormFields: UsersFormField[] = [
-        {
-            label: "Name",
-            inputName: "name",
-            value: userData ? userData.name || "" : ""
-        },
-        {
-            label: "Username",
-            inputName: "username",
-            value: userData ? userData.username || "" : ""
-        },
-        {
-            label: "Email",
-            inputName: "email",
-            value: userData ? userData.email || "" : ""
-        },
-        {
-            label: "City",
-            inputName: "city",
-            value: userData ? userData.city || "" : ""
-        }
-    ]
+
+    const isEditMode=userData
 
     const {
         register,
@@ -53,6 +51,12 @@ export const UserForm = ({ userData }: IUserForm) => {
         watch,
         formState: { errors }
     } = useForm<IUserFormSchema>({
+        defaultValues: {
+            username: isEditMode ? userData.username || "" : "",
+            email: isEditMode ? userData.email || "" : "",
+             city: isEditMode ? userData.city || "" : "",
+            name: isEditMode ? userData.name || "" : ""
+        },
         resolver: zodResolver(userFormSchema)
     })
     const router = useRouter();
@@ -62,12 +66,14 @@ export const UserForm = ({ userData }: IUserForm) => {
     const onSubmit: SubmitHandler<IUserFormSchema> = async (formValues) => {
         // if userData exist then update element in database, else send new one
         // sideEffect, update redux with income new object from database
-        if (userData) {
+        if (isEditMode) {
             const { data, error } = await supabase
                 .from('users')
                 .update({ ...formValues })
                 .eq('id', userData.id)
                 .select()
+            // TODO: wyciagnac z reduxa id i je podmienic a nie z zappytania do bazy
+            //    dispatch(updateUsers(...selectoremToCoBylo,data))
             if(!error){
                 alert("User data edit successfully");
             }else{
@@ -94,7 +100,7 @@ export const UserForm = ({ userData }: IUserForm) => {
     return <FormStyle onSubmit={handleSubmit(onSubmit)}>
         {
             userFormFields.map(field => {
-                const { label, inputName, value } = field;
+                const { label, inputName } = field;
                 return <FormInput key={label} {...field} register={register} errors={errors} />
             })
         }

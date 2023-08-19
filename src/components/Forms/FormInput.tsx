@@ -9,16 +9,14 @@ interface InputProps {
     inputName: Path<IUserFormSchema>;
     register: UseFormRegister<IUserFormSchema>;
     errors: FieldErrors<IUserFormSchema>
-    value: string;
 }
 
-export const FormInput = ({label, inputName, register, errors, value}: InputProps) => {
+export const FormInput = ({ label, inputName, register, errors }: InputProps) => {
     return <Fragment>
         <fieldset>
             <label htmlFor={inputName}>{label}:</label>
-            <input type="text" 
-                id={inputName} 
-                defaultValue={value}
+            <input type="text"
+                id={inputName}
                 {...register(`${inputName}`)}
             />
         </fieldset>
